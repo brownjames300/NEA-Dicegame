@@ -1,6 +1,7 @@
 from time import sleep
 import random
 import sys
+import hashlib
 
 scoreFile = open("./data.csv", "a")
 
@@ -15,6 +16,22 @@ minimum1 = min(p1total, 0)
 minimum2 = min(p2total, 0)
 
 
+# Password Checker
+PASSWORD = "1d4f6fbcf1697331d9c650a5106b6f4785d411fc7c6c8484740b628a5cd87ad7"
+
+def make_hash(text):
+    return str(hashlib.sha3_256(bytes(str(text), 'utf-8')).hexdigest())
+
+
+
+password = make_hash(input("What is the password: "))
+if password == PASSWORD:
+    print("That is the correct password!")
+else:
+    sys.exit("Wrong password")
+
+
+
 print("Welcome to the dice game!")
 sleep(0.5)
 
@@ -26,19 +43,6 @@ player2name = input("Enter a name for player 2?: ")
 print(f"Welcome {player2name} to the dice game!")
 sleep(0.5)
 
-# Password Checker
-PASSWORD = "play"
-
-
-def password_checker():
-    password = input("What is the password: ")
-    if password == PASSWORD:
-        print("That is the correct password!")
-    else:
-        sys.exit("Wrong password")
-
-
-password_checker()
 
 # The Main Game
 
@@ -54,7 +58,7 @@ while rounds < 6:
             player1roll2 = random.randint(1, 6)
             player1roll3 = player1roll1 + player1roll2
             print(f"{player1name} is rolling...")
-            sleep(0.5)
+            sleep(0.1)
             print(f"Dice 1 rolled {player1roll1}")
             print(f"Dice 2 rolled {player1roll2}")
             print(f"{player1name} your overall roll was {player1roll3}")
@@ -83,7 +87,7 @@ while rounds < 6:
             player2roll2 = random.randint(1, 6)
             player2roll3 = player2roll1 + player2roll2
             print(f"{player2name} is rolling...")
-            sleep(0.5)
+            sleep(0.1)
             print(f"Dice 1 rolled {player2roll1}")
             print(f"Dice 2 rolled {player2roll2}")
             print(f"{player2name} your overall roll was {player2roll3}")
