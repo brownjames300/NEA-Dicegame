@@ -140,10 +140,11 @@ elif p1total < p2total:
 
 scoreFile.close()
 
+scoreFile = open('data.csv')
 
-with open("data.csv", "r") as f:
-    score_history = f.read().split("\n")
-    for scorer in score_history:
-        print(scorer)
+numberOfLines = 5
+for i in range(numberOfLines):
+    line = scoreFile.readline()
+    print(line)
 
 scoreFile.close()
